@@ -22,6 +22,7 @@
   "mini.move": { "branch": "main", "commit": "c8b30e92dd2668dd6e56a9a23cb7d4ee38c2266d" },
   "mini.pairs": { "branch": "main", "commit": "1a3e73649c0eaef2f6c48ce1e761c6f0a7c11918" },
   "mini.surround": { "branch": "main", "commit": "f90069c7441a5fb04c3de42eacf93e16b64dd3eb" },
+  "multicursor.nvim": { "branch": "1.0", "commit": "89de36660e0e5b5518f7803c4affb7a7be5eec55" },
   "neotest": { "branch": "master", "commit": "dddbe8fe358b05b2b7e54fe4faab50563171a76d" },
   "neotest-playwright": { "branch": "master", "commit": "6266945039dac27a354de33d2f2a66e75485d5e9" },
   "neotest-python": { "branch": "master", "commit": "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" },
