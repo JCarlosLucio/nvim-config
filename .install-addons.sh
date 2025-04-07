@@ -18,4 +18,3 @@ sudo apt install kitty
 # Change the following options in kitty.conf
 # background_opacity 0.8
 # background_blur 16
-
