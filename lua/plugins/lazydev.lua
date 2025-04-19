@@ -3,7 +3,9 @@ return {
   ft = "lua",
   opts = {
     library = {
-      "~/.local/share/nvim/lazy/",
+      -- "~/.local/share/nvim/lazy/",
+      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      { path = "snacks.nvim", words = { "Snacks" } },
     },
   },
 }
