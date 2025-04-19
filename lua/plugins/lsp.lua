@@ -8,6 +8,26 @@ return {
           workingDirectory = { mode = "auto" },
         },
       },
+      basedpyright = {
+        settings = {
+          basedpyright = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = "openFilesOnly",
+              useLibraryCodeForTypes = true,
+              typeCheckingMode = "recommended",
+            },
+          },
+        },
+      },
+      ruff = {
+        cmd_env = { RUFF_TRACE = "messages" },
+        init_options = {
+          settings = {
+            logLevel = "error",
+          },
+        },
+      },
     },
     setup = {
       eslint = function()
