@@ -9,6 +9,21 @@ return {
     },
   },
 }
+
+-- return {
+--   "maxmx03/fluoromachine.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     require("fluoromachine").setup({
+--       theme = "delta",
+--       glow = true,
+--       transparent = true,
+--     })
+--
+--     vim.cmd.colorscheme("fluoromachine")
+--   end,
+-- }
 --
 -- return {
 --   "eldritch-theme/eldritch.nvim",
