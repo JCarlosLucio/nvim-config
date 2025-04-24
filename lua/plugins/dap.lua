@@ -16,6 +16,10 @@ return {
       id = "cppdbg",
       type = "executable",
       -- Requires installation of cpptools extension - https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(gdb-via--vscode-cpptools)#installation
+      -- Download `cpptools-linux-x63.vsix` from `https://github.com/microsoft/vscode-cpptools/releases`
+      -- `unzip cpptools-linux-x63.vsix`
+      -- move `extension` directory to `.config/nvim/vscode-extensions/cpptools/`
+      -- `mv ./extension ~/.config/nvim/vscode-extensions/cpptools/`
       command = "~/.config/nvim/vscode-extensions/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
     }
   end,
