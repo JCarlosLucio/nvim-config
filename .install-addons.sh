@@ -8,6 +8,10 @@ sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
 sudo apt install neovim
 
+# Setup nvim-treesitter
+npm install tree-sitter-cli -g
+pnpm install -g neovim
+
 # Install kitty
 sudo apt install kitty
 # Generate kitty default configuration
