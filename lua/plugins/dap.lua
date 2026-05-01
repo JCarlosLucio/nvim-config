@@ -12,21 +12,6 @@ return {
   },
   opts = function()
     local dap = require("dap")
-    local dapui = require("dapui")
-    -- Keep UI open after debugging
-    dap.listeners.after.event_exited["dapui_config"] = function()
-      -- Reopens UI
-      dapui.open()
-    end
-    dap.listeners.after.event_terminated["dapui_config"] = function()
-      -- Reopens UI
-      dapui.open()
-    end
-    -- Auto-open UI when debugging starts
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-      dapui.open()
-    end
-
     -- C++ Debug Configuration
     dap.adapters.cppdbg = {
       id = "cppdbg",
