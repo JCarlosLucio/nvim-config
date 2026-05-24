@@ -1,3 +1,5 @@
+---@module "lspconfig"
+
 return {
   "neovim/nvim-lspconfig",
   opts = {
@@ -8,6 +10,7 @@ return {
           workingDirectory = { mode = "auto" },
         },
       },
+      ---@type lspconfig.settings.basedpyright
       basedpyright = {
         settings = {
           basedpyright = {
@@ -20,6 +23,7 @@ return {
           },
         },
       },
+      ---@type lspconfig.settings.ruff
       ruff = {
         cmd_env = { RUFF_TRACE = "messages" },
         init_options = {
