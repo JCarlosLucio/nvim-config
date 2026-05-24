@@ -1,3 +1,5 @@
+---@module "snacks"
+
 return {
   "folke/snacks.nvim",
   ---@type snacks.Config
