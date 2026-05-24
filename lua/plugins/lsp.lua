@@ -36,6 +36,22 @@ return {
           autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
         ]])
       end,
+      ruff = function()
+        -- automatically organize imports on save -- https://github.com/astral-sh/ruff-lsp/issues/95
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          pattern = "*.py",
+          callback = function()
+            vim.lsp.buf.code_action({
+              context = {
+                only = { "source.organizeImports" },
+                diagnostics = vim.lsp.diagnostic.get_line_diagnostics(),
+              },
+              apply = true,
+            })
+            vim.wait(100)
+          end,
+        })
+      end,
     },
   },
 }
