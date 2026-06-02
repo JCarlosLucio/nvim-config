@@ -1,15 +1,15 @@
-return {
-  "folke/tokyonight.nvim",
-  opts = {
-    style = "night", -- "moon", "storm", "night", "day"
-    transparent = true,
-    styles = {
-      sidebars = "transparent",
-      floats = "transparent",
-    },
-  },
-}
-
+-- return {
+--   "folke/tokyonight.nvim",
+--   opts = {
+--     style = "night", -- "moon", "storm", "night", "day"
+--     transparent = true,
+--     styles = {
+--       sidebars = "transparent",
+--       floats = "transparent",
+--     },
+--   },
+-- }
+--
 -- return {
 --   "maxmx03/fluoromachine.nvim",
 --   lazy = false,
@@ -25,20 +25,20 @@ return {
 --   end,
 -- }
 --
--- return {
---   "eldritch-theme/eldritch.nvim",
---   lazy = false,
---   priority = 1000,
---   opts = {},
---   config = function()
---     require("eldritch").setup({
---       transparent = true,
---       palette = "default",
---     })
---     vim.cmd("colorscheme eldritch")
---   end,
--- }
---
+return {
+  "eldritch-theme/eldritch.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {},
+  config = function()
+    require("eldritch").setup({
+      transparent = true,
+      palette = "default",
+    })
+    vim.cmd("colorscheme eldritch")
+  end,
+}
+
 -- return {
 --   {
 --     "scottmckendry/cyberdream.nvim",
