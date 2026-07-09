@@ -9,11 +9,11 @@ return {
   -- Optional. You can also set your own keybindings
   keys = {
     -- Global Minimap Controls
-    { "<leader>m", "<cmd>+minimap <cr>", desc = "minimap" },
-    { "<leader>mm", "<cmd>Neominimap Toggle<cr>", desc = "Toggle global minimap" },
-    { "<leader>mo", "<cmd>Neominimap Enable<cr>", desc = "Enable global minimap" },
-    { "<leader>mc", "<cmd>Neominimap Disable<cr>", desc = "Disable global minimap" },
-    { "<leader>mr", "<cmd>Neominimap Refresh<cr>", desc = "Refresh global minimap" },
+    -- { "<leader>m", "<cmd>+minimap <cr>", desc = "minimap" },
+    { "<leader>um", "<cmd>Neominimap Toggle<cr>", desc = "Toggle global minimap" },
+    -- { "<leader>mo", "<cmd>Neominimap Enable<cr>", desc = "Enable global minimap" },
+    -- { "<leader>mc", "<cmd>Neominimap Disable<cr>", desc = "Disable global minimap" },
+    -- { "<leader>mr", "<cmd>Neominimap Refresh<cr>", desc = "Refresh global minimap" },
 
     -- -- Window-Specific Minimap Controls
     -- { "<leader>nwt", "<cmd>Neominimap WinToggle<cr>", desc = "Toggle minimap for current window" },
@@ -34,9 +34,9 @@ return {
     -- { "<leader>nbc", "<cmd>Neominimap BufDisable<cr>", desc = "Disable minimap for current buffer" },
     --
     ---Focus Controls
-    { "<leader>mf", "<cmd>Neominimap Focus<cr>", desc = "Focus on minimap" },
-    { "<leader>mu", "<cmd>Neominimap Unfocus<cr>", desc = "Unfocus minimap" },
-    { "<leader>ms", "<cmd>Neominimap ToggleFocus<cr>", desc = "Toggle focus on minimap" },
+    -- { "<leader>mf", "<cmd>Neominimap Focus<cr>", desc = "Focus on minimap" },
+    -- { "<leader>mu", "<cmd>Neominimap Unfocus<cr>", desc = "Unfocus minimap" },
+    -- { "<leader>ms", "<cmd>Neominimap ToggleFocus<cr>", desc = "Toggle focus on minimap" },
   },
   init = function()
     -- The following options are recommended when layout == "float"
