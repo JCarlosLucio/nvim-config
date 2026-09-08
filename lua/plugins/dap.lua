@@ -16,23 +16,24 @@ return {
 
     --- Function to run the build task for C/C++ for all files or only current file
     ---@param for_current_file (boolean) A flag to know wether to build only for current file
+    ---@param lax (boolean) A flag to know whether to build laxly or not
     ---@return (string|nil) The output file path or nil if error
-    local function build_executable(for_current_file)
+    local function build_executable(for_current_file, lax)
       local file_dir = vim.fn.expand("%:p:h")
       local file_base_name = vim.fn.expand("%:t:r")
       local file_ext = vim.fn.expand("%:e")
       local output = file_dir .. "/" .. file_base_name
       local includes = "-I./source/includes"
+      local warnings_and_errors = "-pedantic-errors -Wall -Wextra -Wconversion -Wsign-conversion -Werror"
 
-      local compiler, std_flag, lang_flags, filename
+      local compiler, std_flag, filename
       if vim.tbl_contains(cpp_extensions, file_ext) then
         compiler = "/usr/bin/g++"
-        lang_flags = "-Weffc++"
+        warnings_and_errors = warnings_and_errors .. " -Weffc++"
         std_flag = "-std=c++23"
         filename = "*." .. file_ext
       elseif vim.tbl_contains(c_extensions, file_ext) then
         compiler = "/usr/bin/gcc"
-        lang_flags = ""
         std_flag = "-std=c17"
         filename = "*." .. file_ext
       else
@@ -46,12 +47,16 @@ return {
         includes = ""
       end
 
+      if lax then
+        warnings_and_errors = ""
+      end
+
       -- Build command
       local build_cmd = string.format(
-        "cd %s && %s -fdiagnostics-color=always -pedantic-errors -g -Wall %s -Wextra -Wconversion -Wsign-conversion -Werror %s -ggdb %s -o %s %s",
+        "cd %s && %s -fdiagnostics-color=always -g %s %s -ggdb %s -o %s %s",
         file_dir,
         compiler,
-        lang_flags,
+        warnings_and_errors,
         std_flag,
         filename,
         output,
@@ -71,7 +76,11 @@ return {
     end
 
     local function build_executable_for_current_file()
-      return build_executable(true)
+      return build_executable(true, false)
+    end
+
+    local function build_laxly_executable_for_current_file()
+      return build_executable(true, true)
     end
 
     local cppSetupCommands = {
@@ -133,6 +142,17 @@ return {
         type = "codelldb",
         request = "launch",
         program = build_executable_for_current_file,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        setupCommands = cppSetupCommands,
+        MIMode = "gdb",
+        miDebuggerPath = "/usr/bin/gdb",
+      },
+      {
+        name = "Codelldb: Only Build Laxly & Launch current C/C++ file",
+        type = "codelldb",
+        request = "launch",
+        program = build_laxly_executable_for_current_file,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         setupCommands = cppSetupCommands,
