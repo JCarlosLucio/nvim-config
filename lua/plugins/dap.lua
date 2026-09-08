@@ -11,6 +11,8 @@ return {
   },
   opts = function()
     local dap = require("dap")
+    local cpp_extensions = { "cpp", "cc", "cxx", "C" }
+    local c_extensions = { "c" }
 
     -- Function to run the build task for C++
     local function build_and_get_executable()
@@ -36,17 +38,32 @@ return {
       return file_dir .. "/" .. file_base_name
     end
 
-    -- Function to run the build task for C++
+    -- Function to run the build task for C/C++
     local function build_and_get_executable_for_current_file()
       local file_dir = vim.fn.expand("%:p:h")
       local filename = vim.fn.expand("%:p")
       local file_base_name = vim.fn.expand("%:t:r")
+      local file_ext = vim.fn.expand("%:e")
       local output = file_dir .. "/" .. file_base_name .. ".out"
 
-      -- Build command matching tasks.json for debugging task
+      local compiler, std_flag
+      if vim.tbl_contains(cpp_extensions, file_ext) then
+        compiler = "/usr/bin/g++"
+        std_flag = "-std=c++23"
+      elseif vim.tbl_contains(c_extensions, file_ext) then
+        compiler = "/usr/bin/gcc"
+        std_flag = "-std=c17"
+      else
+        vim.notify("Unsupported file type: " .. file_ext, vim.log.levels.ERROR)
+        return nil
+      end
+
+      -- Build command
       local build_cmd = string.format(
-        "cd %s && /usr/bin/g++ -fdiagnostics-color=always -pedantic-errors -g -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Werror -std=c++23 -ggdb %s -o %s",
+        "cd %s && %s -fdiagnostics-color=always -pedantic-errors -g -Wall -Wextra -Wconversion -Wsign-conversion -Werror %s -ggdb %s -o %s",
         file_dir,
+        compiler,
+        std_flag,
         filename,
         output
       )
@@ -116,7 +133,7 @@ return {
         miDebuggerPath = "/usr/bin/gdb",
       },
       {
-        name = "Codelldb: Only Build & Launch current file",
+        name = "Codelldb: Only Build & Launch current C/C++ file",
         type = "codelldb",
         request = "launch",
         program = build_and_get_executable_for_current_file,
